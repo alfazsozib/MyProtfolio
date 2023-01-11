@@ -5,7 +5,9 @@
 
 .hero{
     background-color: blanchedalmond;
-    background: url("https://media3.giphy.com/media/3oEduOtNe7lOFnBpmw/giphy.gif?cid=790b76115888ffbba6021f288c5f078b7c819549f73c8830&rid=giphy.gif&ct=g");
+    background: url("../images/giphy.webp");
     background-size: cover;
     
 }
+
+/* https://media3.giphy.com/media/3oEduOtNe7lOFnBpmw/giphy.gif?cid=790b76115888ffbba6021f288c5f078b7c819549f73c8830&rid=giphy.gif&ct=g */
