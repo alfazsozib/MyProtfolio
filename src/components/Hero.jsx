@@ -1,5 +1,5 @@
 import React from 'react'
-import { AiOutlineArrowRight, AiOutlineArrowDown } from "react-icons/ai"
+import { AiOutlineArrowRight} from "react-icons/ai"
 import "./hero.css"
 
 
