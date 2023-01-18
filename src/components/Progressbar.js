@@ -6,7 +6,7 @@ const Progressbar = ({bgcolor,progress,height,lebelText}) => {
 		height: height,
 		width: '100%',
 		backgroundColor: 'whitesmoke',
-		borderRadius: 40,
+		borderRadius: 10,
 		margin: 20
 	}
 	
@@ -14,7 +14,7 @@ const Progressbar = ({bgcolor,progress,height,lebelText}) => {
 		height: '100%',
 		width: `${progress}%`,
 		backgroundColor: bgcolor,
-		borderRadius:40,
+		borderRadius:10,
 		textAlign: 'right'
 		
 	}
@@ -24,16 +24,12 @@ const Progressbar = ({bgcolor,progress,height,lebelText}) => {
 		color: 'white',
 		fontWeight: 700
 	}
-
-	const labelText = {
-
-	}
 		
 	return (
 	<div style={Parentdiv}>
 		
 	<div style={Childdiv}>
-	<p className='text-left inline-block float-left font-Regular text-[15px] pl-2 text-white'>{""}</p> 
+	<p className='text-left inline-block float-left font-Regular text-[15px] pl-2 text-white'>{lebelText}</p> 
 		<span style={progresstext}>{`${progress}%`} </span>
 	</div>
 	</div>

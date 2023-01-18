@@ -1,0 +1,132 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/utils/Counters.sol";
+
+interface IDOGNFT{
+    function ownerOf(uint256 _tokenId) external view returns (address);
+    function returnOwnerShip(uint256 _tokenId,address) external;
+    function renterClaimAccess(uint256 _tokenId) external;
+    function getDogBreedCount(uint256 _tokenId) external returns(uint256);
+    function setRentedInfo(uint _tokenId, address _to, uint256 _amount) external;
+}
+
+interface IAdmin{
+    function getDoracOwner() external view returns(address);
+    function getMinter() external view returns(address);
+    function getManager() external view returns(address);
+    function getMarketplaceWallet() external view returns(address);
+    function getGameEngine() external view returns(address);
+}
+
+
+
+contract Renting  {
+
+    using Counters for Counters.Counter;
+    Counters.Counter public rentItemCounter; // count for each rent
+    Counters.Counter public rentCounter; // count for each rent
+
+    mapping(uint256 => rentADog) public  rentedtemList;
+    mapping(uint256 => rent) public  rentedList;
+
+
+    mapping(uint256 => uint256) public tokenKeyBreedId;
+
+
+    address public dogNFTAddress;
+    address public admintContractAddress;
+
+    struct rent{
+        uint256 rentItemId;
+        address renterAddress;
+        status rentedStatus;
+    }
+
+    struct rentADog{
+        uint256 rentPostedTime;
+        address ownerAddress;
+        uint256 tokenId;
+        uint256 rentPrice;
+        uint256 ownerGet;
+        rentType Rtype;
+        status rentStatus;
+    }
+
+
+    enum status{
+        ACTIVE, RENTED, CANCEL, COMPLETE
+    }
+
+    enum rentType{
+        FOR_BREEDING, FOR_RACE
+    }
+
+    constructor( address _dogNFTAddress, address _admintContractAddress)  {
+        dogNFTAddress = _dogNFTAddress; 
+        admintContractAddress = _admintContractAddress;
+    }
+
+    // Modifier -----------------
+    modifier onlyOwner() {
+        require( IAdmin(admintContractAddress).getDoracOwner() == msg.sender, "Not An Owner");
+        _;
+    }
+    modifier onlyMinter() {
+        require( IAdmin(admintContractAddress).getMinter() == msg.sender, "Not the minter");
+        _;
+    }
+    modifier onlyManager() {
+        require( IAdmin(admintContractAddress).getManager() == msg.sender, "Not the Manager");
+        _;
+    }
+
+
+
+    // Helper function
+    function setDOGAddress(address _add) public onlyOwner {
+        dogNFTAddress = _add;
+    }
+    function setAdminAddress(address _add) public onlyOwner {
+        admintContractAddress = _add;
+    }
+
+    // Breeding Renting
+    function addDogItemForBreed(uint256 _tokenId,uint256 _price) public {
+        require(IDOGNFT(dogNFTAddress).ownerOf(_tokenId)==msg.sender,"NOT THE OWNER");
+        require(tokenKeyBreedId[_tokenId] == 0,"already in the market");
+        require(IDOGNFT(dogNFTAddress).getDogBreedCount(_tokenId) <= 3,"Breed count should be less than 3");
+        rentItemCounter.increment();
+        rentADog memory newItemBreed = rentADog(block.timestamp,msg.sender,_tokenId,_price,0,rentType.FOR_BREEDING,status.ACTIVE);
+        rentedtemList[rentItemCounter.current()] = newItemBreed;
+        tokenKeyBreedId[_tokenId] = rentItemCounter.current();
+    }
+
+    function addDogItemForRace(uint256 _tokenId,uint256 _price,uint256 _ownerPercet) public {
+        require(IDOGNFT(dogNFTAddress).ownerOf(_tokenId)==msg.sender,"NOT THE OWNER");
+        require(tokenKeyBreedId[_tokenId] == 0,"already in the market");
+        rentItemCounter.increment();
+        rentADog memory newItemBreed = rentADog(block.timestamp,msg.sender,_tokenId,_price,_ownerPercet,rentType.FOR_RACE,status.ACTIVE);
+        rentedtemList[rentItemCounter.current()] = newItemBreed;
+        tokenKeyBreedId[_tokenId] = rentItemCounter.current();
+    }
+
+    function rentTheDog(uint256 _itemId) external payable{
+        require(rentedtemList[_itemId].rentStatus == status.ACTIVE,"ITEM IS NOT ACTIVE");
+        require(rentedtemList[_itemId].ownerAddress != msg.sender,"NOT THE OWNER");
+        require(rentedtemList[_itemId].rentPrice == msg.value,"NOT ENOUGH MONEY");
+        rentedtemList[_itemId].rentStatus = status.RENTED;
+        payable(rentedtemList[_itemId].ownerAddress ).transfer(rentedtemList[_itemId].rentPrice );
+        IDOGNFT(dogNFTAddress).setRentedInfo(rentedtemList[_itemId].tokenId,msg.sender ,rentedtemList[_itemId].ownerGet);
+        rent memory newRent = rent(_itemId,msg.sender,status.ACTIVE);
+        rentedList[_itemId] = newRent;
+    }
+    
+    function cancelRentItem(uint256 _itemId) external {
+        require(rentedtemList[_itemId].rentStatus == status.ACTIVE,"ITEM IS NOT ACTIVE");
+        require(rentedtemList[_itemId].ownerAddress == msg.sender,"NOT THE OWNER");
+        rentedtemList[_itemId].rentStatus = status.CANCEL;
+    }
+
+
+}

@@ -3,7 +3,7 @@ import React from 'react'
 function Navbar() {
   return (
     <div className='nav max-w-[1644px] mx-auto'>
-      <div id='nav' className="nav--items bg-[#000000] border-b-4 border-b-[#0abec4]">
+      <div id='nav' className="nav--items bg-[#000000] border-b-2 border-b-[#0ea0a5]">
           <ul className='flex gap-12 text-white font-Regular text-[18px] px-10 py-3'>
             <li className=''><a href="#hero" className='hover:text-[#03989e] '>Home</a></li>
             <li><a href="#aboutMe" className='hover:text-[#03989e] '>About</a></li>
