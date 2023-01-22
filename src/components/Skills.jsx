@@ -4,7 +4,7 @@ import Progressbar from './Progressbar'
 
 function Skills() {
   return ( 
-    <div id='skills' className='pt-44 max-w-[1644px] mx-auto bg-slate-900'>
+    <div id='skills' className='pt-24 max-w-[1644px] mx-auto bg-slate-900'>
         <h1 className='text-center font-Regular text-white text-[45px] py-12'>Skills</h1>
         <div className='grid grid-cols-2 p-12'>
           <div className='flex flex-col'>

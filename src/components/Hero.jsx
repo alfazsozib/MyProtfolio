@@ -7,8 +7,8 @@ function Hero() {
   return (
     <>
     <div id='hero' className="hero w-[100%] max-w-[1644px] mx-auto relative h-[100vh] flex flex-col justify-center">
-      <nav className='absolute right-10 top-10'>
-       <a href={Resume} download={"Resume"}><button className='bg-[#29cfd5] hover:bg-[#03989e] py-2 px-7 rounded-lg text-white font-Regular'>Resume</button></a> 
+      <nav className='absolute right-12 top-10'>
+       <a href={Resume} download={"Resume"}><button className='bg-[#29cfd5] hover:bg-[#03989e] py-2 px-10 rounded-lg text-white font-Regular'>Resume</button></a> 
       </nav>
       <div className='flex flex-col text-center items-center'>
         <h1 className='text-[60px] text-white font-Regular leading-10 '>Hey, I'm <span className='text-[#29cfd5]'>Alfaz Hosain</span></h1>
