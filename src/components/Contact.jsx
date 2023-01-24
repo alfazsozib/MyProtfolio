@@ -15,7 +15,7 @@ function Contact() {
             <a href="https://github.com/alfazsozib"><AiFillGithub size={50} /></a>
             </div>
         </div>
-        <div className='w-[470px] max-sm:w-[340px] max-sm:h-[450px] h-[500px] ml-20  max-sm:ml-0  rounded-3xl bg-slate-800'>
+        <div className='w-[470px] max-sm:w-[340px] max-sm:h-[450px] h-[500px] ml-20 max-sm:ml-6  rounded-3xl bg-slate-800'>
             <form className='flex flex-col gap-4 max-sm:p-4 p-10'>
                 <div className='flex flex-col'>
                 <label className='font-Regular text-white pb-2' htmlFor="Name">Name</label>
