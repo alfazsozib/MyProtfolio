@@ -10,7 +10,7 @@ import Skills from "./components/Skills";
 
 function App() {
   return (
-    <div className="App hover:cursor-crosshair ">
+    <div className="App hover:cursor-crosshair overflow-hidden">
      <Hero />
      <Navbar />
      <About />

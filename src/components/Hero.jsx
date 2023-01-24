@@ -7,12 +7,12 @@ function Hero() {
   return (
     <>
     <div id='hero' className="hero w-[100%] max-w-[1644px] mx-auto relative h-[100vh] flex flex-col justify-center">
-      <nav className='absolute right-12 top-10'>
-       <a href={Resume} download={"Resume"}><button className='bg-[#29cfd5] hover:bg-[#03989e] py-2 px-10 rounded-lg text-white font-Regular'>Resume</button></a> 
+      <nav className='absolute right-12 max-sm:right-4 top-10'>
+       <a href={Resume} download={"Resume"}><button className='bg-[#29cfd5] hover:bg-[#03989e] py-2 px-10 rounded-lg text-white  font-Regular'>Resume</button></a> 
       </nav>
       <div className='flex flex-col text-center items-center'>
-        <h1 className='text-[60px] text-white font-Regular leading-10 '>Hey, I'm <span className='text-[#29cfd5]'>Alfaz Hosain</span></h1>
-        <h1 className='text-white text-[60px] font-Regular'>I am a Full Stack Developer</h1>
+        <h1 className='text-[60px] text-white font-Regular leading-10 max-sm:text-[50px] max-sm:leading-[60px] '>Hey, I'm <span className='text-[#29cfd5]'>Alfaz Hosain</span></h1>
+        <h1 className='text-white text-[60px] max-sm:text-[50px] font-Regular'>I am a Full Stack Developer</h1>
         <motion.button   initial={{ opacity: 0.6 }}
         whileHover={{
           scale: 1.1,

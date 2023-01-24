@@ -18,7 +18,7 @@ function Portfolio() {
       <p className='text-center pb-5 text-[12px] items-center text-yellow-500 max-sm:pb-16'>Take a look at my work's</p>
       
       
-      <div className='cards p-12 max-sm:p-0  grid grid-cols-3 max-lg:grid max-lg:grid-cols-2 max-md:grid-cols-1 gap-6 overflow-hidden'>
+      <div className='cards p-12 max-sm:p-0  grid grid-cols-3 max-lg:grid max-lg:grid-cols-2 max-md:grid-cols-1 gap-6'>
     
         {slice.map((data,index)=>
           <div key={index} className="card w-[350px] p-5 flex flex-col gap-4 text-center items-center border-2 border-[#29cfd5] hover:-translate-y-3 duration-500 shadow-[#29cfd5] shadow-sm rounded-xl">
@@ -30,7 +30,7 @@ function Portfolio() {
         
       </div>
       {lenData>6?
-      <div className='w-[100%] flex justify-center'>
+      <div className='w-[100%] max-sm:pt-10 flex justify-center'>
         <button onClick={ShowMore} className='text-white bg-[#29cfd5] hover:bg-[#03989e] px-12 py-3 rounded-xl'>Show More</button>
       </div>
       :null}
