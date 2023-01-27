@@ -7,7 +7,7 @@ function Testimonial() {
     <>
     <div className='max-w-[1644px] mx-auto'>
     <h1 className='text-center pt-32 pb-12 text-[45px] font-Regular text-white  bg-slate-900'>Testimonial</h1>
-    <div id='Testimonial' className='h-[400px]  bg-slate-800 py-20'>
+    <div id='Testimonial' className='h-[400px]  bg-slate-800 py-20 max-sm:py-12'>
         <Carousel autoPlay={true} infiniteLoop={true} showStatus={false} showArrows={true} showIndicators={false}>
             {RatingData.map((data)=>
             <div className='text-white flex flex-col items-center gap-4'>
@@ -16,7 +16,7 @@ function Testimonial() {
                 </div>
                 <p className='bg-slate-600 text-slate-300 rounded-lg px-4 py-1 '>{data.name}</p>
                 <p>⭐⭐⭐⭐⭐</p>
-                <p className='font-Regular py-2 w-1/2'>{data.Review}</p>
+                <p className='font-Regular py-2 w-1/2 max-sm:w-full'>{data.Review}</p>
             </div>
             )}
         </Carousel>
