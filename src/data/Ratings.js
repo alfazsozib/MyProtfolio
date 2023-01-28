@@ -33,7 +33,7 @@ const RatingData =
     },
     {
         photo:Av1 ,
-        name:"Alfaz",
+        name:"gadeer5",
         star:"5 star",
         Review:"The website was created quickly and met all of my specific requirements."
     },
